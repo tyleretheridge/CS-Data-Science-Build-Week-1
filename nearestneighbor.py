@@ -11,11 +11,9 @@ class NearestNeighbor:
     Returns:
         [type]: [description]
     """
-    # Init is where user will define parameters for usage
     def __init__(self, n_neighbors=5, X_train=None, y_train=None):
         self.k = n_neighbors
 
-    # Methods that will be used for algorithm calculations
     def calc_distance(self, vec_a, vec_b):
         # TODO: Figure out how to deal with class labels in the matrices
         # Avoid performing distance on the class label if numeric
@@ -31,7 +29,7 @@ class NearestNeighbor:
         """
         return np.linalg.norm(vec_a - vec_b)
         
-    def calc_neighbors(self, x):
+    def predict_label(self, x):
         """Returns a list of distances between the parameter "x",
         and the entries in the training data.
 
@@ -47,29 +45,19 @@ class NearestNeighbor:
         # A list of length self.k of the indices of the closest points to
         # input x. 
         k_index = np.argsort(distance_list)[:self.k]
-
-
-    def calc_most_common_label(self, arr):
-        """A counting algorithm that will return the most common 
-        class label in the passed array.
-
-        Args:
-            arr ([type]): An array of k_indices
-        """
+        
         # Get the maximum number of class labels
         maximum = len(set(self.y_train))
         # list comprehension to create a buckets array
         buckets = [0 for i in range(maximum + 1)]
         # Count the labels and increment the buckets
-        for value in arr:
+        for value in k_index:
             buckets[value] += 1
         # Return the index of the largest bucket
         # AKA return the label with the highest occurrence in the list
         most_common_label = buckets.index(max(buckets))
         return most_common_label
 
-    
-    # Class methods to be used by the end user, aka public methods
     def fit(self, X_train, y_train):
         """Takes in training data and stores it for comparison.
 
@@ -81,10 +69,11 @@ class NearestNeighbor:
         self.y_train = y_train
     
     def predict(self, X_test, y_test):
-        """[summary]
+        """Returns a list of predicted class labels
 
         Args:
             X_test ([type]): [description]
             y_test ([type]): [description]
         """
-
+        labels_predict = np.array([self.predict_label(x) for x in X_test])
+        return labels_predict
