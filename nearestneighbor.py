@@ -68,53 +68,23 @@ class NearestNeighbor:
         most_common_label = buckets.index(max(buckets))
         return most_common_label
 
-
-
-# Compare passed in parameter to every value in X_train
-    # Take in an X
-    # Use distance calc comparing it to X_train points
-    # Find a cutoff of nearest neighbors
-    # Take majority classification labels of the k nearest neighbors
-    # use np.argsort to return an array of sorted indices
-    # argsort returns a copy of the indices as if the original matrix were sorted
-    # useful for maintaining index integrity to label vector
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     # Class methods to be used by the end user, aka public methods
-    def fit(self, X, y):
+    def fit(self, X_train, y_train):
         """Takes in training data and stores it for comparison.
 
         Args:
-            X ([type]): Feature matrix
-            y ([type]): Target vector
+            X_train ([type]): Feature matrix
+            y_train ([type]): Target vector
         """
-        self.X_train = X
-        self.y_train = y
+        self.X_train = X_train
+        self.y_train = y_train
     
-    def predict(self, X, y):
+    def predict(self, X_test, y_test):
         """[summary]
 
         Args:
-            X ([type]): [description]
-            y ([type]): [description]
+            X_test ([type]): [description]
+            y_test ([type]): [description]
         """
 
