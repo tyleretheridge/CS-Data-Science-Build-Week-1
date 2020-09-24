@@ -11,3 +11,7 @@ Ideal pipeline for the algorithm's current implementation
     Find a cutoff of x=k nearest neighbors based on distance
     Count class labels of these nearest neighbors
     Take majority classification labels of the k nearest neighbors and return as prediction
+
+Blog Post:
+
+https://medium.com/@tylerjetheridge98/a-basic-implementation-of-k-nearest-neighbors-in-python-21e02c54a7f6?sk=62928104cfc825b091d496c2d12eeba4
